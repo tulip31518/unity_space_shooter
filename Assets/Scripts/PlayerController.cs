@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 	public Boundary boundary;
 
 	public GameObject shot;
-	private GameObject projectile;
 	public Transform shotSpawn;
 	public float nextFire = 0.5f;
 	public float time = 0f;
@@ -23,7 +22,8 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		if (Input.GetButton ("Fire1") && Time.time - time > nextFire) {
-			projectile = Instantiate(shot, shotSpawn.position, shotSpawn.rotation) as GameObject;
+			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			GetComponent<AudioSource> ().Play ();
 			time = Time.time;
 		}
 	}
